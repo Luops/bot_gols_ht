@@ -8,10 +8,7 @@ from urllib.error import URLError, HTTPError
 from time import sleep
 from flask import Flask, jsonify
 
-app = Flask(__name__)
-@app.route("/", methods=['POST'])
-
-def resulst():
+def results():
   # Obter URL
   url = 'https://www.totalcorner.com/match/today'
   headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64) AppleWebkit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.61 Safari/537.36"}
@@ -143,5 +140,4 @@ def resulst():
         sleep(2)
   print("Loop concluído")
 
-if __name__ == '__main__':
-    app.run(debug=True)
+results()
