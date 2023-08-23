@@ -8,6 +8,10 @@ from urllib.error import URLError, HTTPError
 from time import sleep
 from flask import Flask, jsonify
 
+app = Flask(__name__)
+
+@app.route('/', methods=['GET'])
+
 def results():
   # Obter URL
   url = 'https://www.totalcorner.com/match/today'
@@ -111,26 +115,32 @@ def results():
 
     condicao_casa = (appm_casa >= 0.5 or cg_casa >= 12)
     condicao_fora = (appm_fora >= 0.5 or cg_fora >= 12) 
-    condicao_total = (appm_total >= 0 or cg_total >= 4)
+    condicao_total = (appm_total >= 1.3 and cg_total >= 25)
 
     print(f"Analisando jogo {i + 1} de {len(df)}")
 
-    if condicao_total:
+    if condicao_total and (j['Placar'][0] == 0 and j['Placar'][1] == 0) and (j['Tempo'] >= 20 and j['Tempo'] <= 28):
       casa = re.sub(r'^\d{1}','',j['Time Casa'])
       fora = re.sub(r'^\d{1}$','',j['Time Fora'])
 
       if f'{casa} X {fora}' not in mensagens_enviadas:
         msg = f'''
-          GOLS HT
+          Live
                   
-          Liga: {j["Liga"]}
           Jogo: {casa} X {fora}
+
           Placar: {j["Placar"][0]} X {j["Placar"][1]}
+
           Tempo: {j["Tempo"]} minutos
+
           Escanteios: {j["Escanteios"][0]} X {j["Escanteios"][1]}
+
           Chutes: {j["Chutes"][0]} X {j["Chutes"][1]}
+
           Ataques Perigosos: {j["Ataques Perigosos"][0]} X {j["Ataques Perigosos"][1]}
+
           Appm: {appm_casa} X {appm_fora}
+
           Chance de Gols: {cg_casa} X {cg_fora}
         '''
         print("Enviando mensagem...")
@@ -139,5 +149,7 @@ def results():
         print("Mensagem enviada")
         sleep(2)
   print("Loop concluído")
+  return jsonify("Loop concluído"), 200
 
-results()
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
