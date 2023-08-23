@@ -1,3 +1,5 @@
+# vercel-python=python3
+
 import requests
 import pandas as pd
 import numpy as np
@@ -151,5 +153,5 @@ def results():
   print("Loop concluído")
   return jsonify("Loop concluído"), 200
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+'''if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)'''
