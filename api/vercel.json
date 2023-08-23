@@ -1,0 +1,8 @@
+{
+  "functions": {
+    "api/results.py": {
+      "maxDuration": 60,
+      "memory": 256
+    }
+  }
+}
