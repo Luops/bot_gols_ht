@@ -125,7 +125,7 @@ def results():
       casa = re.sub(r'^\d{1}','',j['Time Casa'])
       fora = re.sub(r'^\d{1}$','',j['Time Fora'])
 
-      if (f'{casa} X {fora}') not in mensagens_enviadas:
+      if f'{casa} X {fora}' not in mensagens_enviadas:
         msg = f'''
           Live
                   
