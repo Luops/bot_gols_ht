@@ -125,7 +125,7 @@ def results():
       casa = re.sub(r'^\d{1}','',j['Time Casa'])
       fora = re.sub(r'^\d{1}$','',j['Time Fora'])
 
-      if f'{casa} X {fora}' not in mensagens_enviadas:
+      if (f'{casa} X {fora}') not in mensagens_enviadas:
         msg = f'''
           Live
                   
@@ -151,7 +151,7 @@ def results():
         print("Mensagem enviada")
         sleep(2)
   print("Loop concluído")
-  return jsonify("Loop concluído"), 200
+  return {"statusCode": 200, "body": results()}
 
 if __name__ == '__main__':
     app.run(debug=True)
