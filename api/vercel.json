@@ -1,8 +1,14 @@
 {
   "functions": {
-    "api/results.py": {
+    "api/index.py": {
       "maxDuration": 60,
       "memory": 256
     }
-  }
+  },
+  "routes": [
+    {
+      "src": "/",
+      "dest": "/index.py"
+    }
+  ]
 }
