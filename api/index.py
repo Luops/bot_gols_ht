@@ -151,7 +151,7 @@ def results():
         print("Mensagem enviada")
         sleep(2)
   print("Loop concluído")
-  return {"statusCode": 200, "body": results()}
+  return {"statusCode": 200, "body": "Loop concluído"}
 
 if __name__ == '__main__':
     app.run(debug=True)
